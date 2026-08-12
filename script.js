@@ -30,6 +30,19 @@ if (menuBtn && nav) {
     menuBtn.setAttribute("aria-expanded", String(next));
   });
 
+  document.addEventListener("click", (event) => {
+    if (!nav.classList.contains("open")) {
+      return;
+    }
+
+    if (menuBtn.contains(event.target) || nav.contains(event.target)) {
+      return;
+    }
+
+    nav.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+  });
+
   nav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       nav.classList.remove("open");
